@@ -1,0 +1,33 @@
+{
+	"name": "Invoice - Invoice Generator",
+	"description": "Easily create your own invoices.",
+	"author": "Milos Sudimac",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"icons": {
+		"16": "icon.png",
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+    "action": {
+        "default_title": "Invoice",
+        "default_icon": "icon.png"
+    },
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"js": ["contentScript.js"],
+			"matches": ["https://www.google.com/"]
+		}
+	],
+	"web_accessible_resources": [
+		{
+			"resources": ["*.png", "/*.html"],
+			"matches": ["https://www.google.com/"]
+		}
+	],
+	"permissions": ["storage", "tabs"],
+    "optional_permissions": ["downloads"]
+}
