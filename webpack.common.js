@@ -1,10 +1,13 @@
-const { path } = require('express/lib/application');
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
 	entry: {
 		invoice: path.resolve('./src/pages/Invoice/Invoice.tsx'),
 		background: path.resolve('./src/background/background.ts'),
-		contentScript: path.resolve('./src/contentScripts/contentScript.ts'),
 	},
 	module: {
 		rules: [

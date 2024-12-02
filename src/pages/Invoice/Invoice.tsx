@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 const Invoice = () => {
-	return <div></div>;
+	return <div>Start</div>;
 };
 
 try {
