@@ -3,11 +3,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
 	entry: {
 		invoice: path.resolve('./src/pages/Invoice/Invoice.tsx'),
-		background: path.resolve('./src/background/background.ts'),
+		background: path.resolve('./src/extension/background/background.ts'),
 	},
 	module: {
 		rules: [

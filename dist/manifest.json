@@ -16,6 +16,6 @@
 	"background": {
 		"service_worker": "background.js"
 	},
-	"permissions": ["storage", "tabs"],
+	"permissions": ["storage", "tabs", "contextMenus"],
 	"optional_permissions": ["downloads"]
 }
