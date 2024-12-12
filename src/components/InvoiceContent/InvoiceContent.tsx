@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import InvoiceHeader from '../InvoiceHeader/InvoiceHeader';
 import InvoiceDetails from '../InvoiceDetails/InvoiceDetails';
 import InvoiceTable from '../InvoiceTable/InvoiceTable';
+import InvoiceTotal from '../InvoiceTotal/InvoiceTotal';
+import InvoiceFooter from '../InvoiceFooter/InvoiceFooter';
 
 const InvoiceContent = () => {
 	return (
@@ -12,6 +14,8 @@ const InvoiceContent = () => {
 				<InvoiceHeader />
 				<InvoiceDetails />
 				<InvoiceTable />
+				<InvoiceTotal />
+				<InvoiceFooter />
 			</StyledPaper>
 		</StyledContainer>
 	);

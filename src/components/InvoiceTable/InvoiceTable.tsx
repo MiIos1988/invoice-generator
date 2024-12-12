@@ -52,7 +52,8 @@ const Table = styled.table`
 	margin-top: 20px;
 	font-weight: 500;
 	color: #4a4a4a;
-	margin: 40px 0;
+	margin-top: 40px;
+	margin-bottom: 20px;
 `;
 
 const Thead = styled.thead`

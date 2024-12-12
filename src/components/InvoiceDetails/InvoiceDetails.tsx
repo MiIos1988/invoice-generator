@@ -63,8 +63,8 @@ const InvoiceNumber = styled.div`
 	font-size: 24px;
 	font-weight: 700;
 	color: #4a4a4a;
-	margin-top: 40px;
-	margin-bottom: 20px;
+	margin-top: 60px;
+	margin-bottom: 30px;
 `;
 
 const InfoWrapper = styled.div`
