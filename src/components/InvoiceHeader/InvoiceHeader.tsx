@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlexDiv, INVOICE_LOGO } from '../../utils/common';
+import { FlexDiv } from '../../utils/common';
+import { Logo } from '../Logo/Logo';
 
 const InvoiceHeader = () => {
 	return (
 		<Wrapper>
-			<ImageWrapper>
-				<Image src={INVOICE_LOGO} />
-			</ImageWrapper>
+			<Logo />
 			<IssuerInfoWrapper>
 				<CompanyName>
 					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
@@ -40,17 +39,6 @@ const InvoiceHeader = () => {
 
 const Wrapper = styled(FlexDiv)`
 	justify-content: space-between;
-`;
-
-const ImageWrapper = styled.div`
-	width: 250px;
-	height: 200px;
-`;
-
-const Image = styled.img`
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
 `;
 
 const EditableParagraph = styled.p`
