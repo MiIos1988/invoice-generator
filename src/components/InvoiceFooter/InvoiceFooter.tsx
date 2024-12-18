@@ -1,28 +1,71 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FlexDiv } from '../../utils/common';
+import { InvoiceContentProps } from '../../types/invoice';
+import { updateNestedField } from '../../utils/helpers';
 
-const InvoiceFooter = () => {
+const InvoiceFooter: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<Wrapper>
 			<GiroAccount>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					OTP Bank a.d. Beograd
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceFooter',
+							'nameBank',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceFooter.nameBank}
 				</EditableParagraph>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					Tekući račun: 325-9500700212121-21
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceFooter',
+							'giroAccount',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceFooter.giroAccount}
 				</EditableParagraph>
 			</GiroAccount>
 			<NameWrapper>
 				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceFooter',
+							'responsiblePerson',
+							e.currentTarget.textContent || ''
+						)
+					}
 					style={{ marginBottom: '15px' }}
 					contentEditable="true"
 					suppressContentEditableWarning={true}
 				>
-					Odgovorno lice za izdavanje računa
+					{invoiceData.invoiceFooter.responsiblePerson}
 				</EditableParagraph>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					Pera Perić
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceFooter',
+							'responsiblePersonName',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceFooter.responsiblePersonName}
 				</EditableParagraph>
 			</NameWrapper>
 		</Wrapper>

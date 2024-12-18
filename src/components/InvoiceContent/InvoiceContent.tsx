@@ -6,16 +6,22 @@ import InvoiceDetails from '../InvoiceDetails/InvoiceDetails';
 import InvoiceTable from '../InvoiceTable/InvoiceTable';
 import InvoiceTotal from '../InvoiceTotal/InvoiceTotal';
 import InvoiceFooter from '../InvoiceFooter/InvoiceFooter';
+import { InvoiceData } from '../../types/invoice';
 
-const InvoiceContent = () => {
+interface InvoiceContentProps {
+	invoiceData: InvoiceData;
+	setInvoiceData: React.Dispatch<React.SetStateAction<InvoiceData>>;
+}
+
+const InvoiceContent: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<StyledContainer maxWidth="md">
 			<StyledPaper elevation={5}>
-				<InvoiceHeader />
-				<InvoiceDetails />
-				<InvoiceTable />
-				<InvoiceTotal />
-				<InvoiceFooter />
+				<InvoiceHeader invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
+				<InvoiceDetails invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
+				<InvoiceTable invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
+				<InvoiceTotal invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
+				<InvoiceFooter invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
 			</StyledPaper>
 		</StyledContainer>
 	);

@@ -6,3 +6,18 @@ export const readFileAsDataURL = (file: File): Promise<string> => {
 		reader.readAsDataURL(file);
 	});
 };
+
+export const updateNestedField = <T extends object, K extends keyof T>(
+	setState: React.Dispatch<React.SetStateAction<T>>,
+	parentField: K,
+	childField: keyof T[K],
+	value: string
+) => {
+	setState((prev) => ({
+		...prev,
+		[parentField]: {
+			...prev[parentField],
+			[childField]: value,
+		},
+	}));
+};

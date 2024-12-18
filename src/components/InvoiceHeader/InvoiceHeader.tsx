@@ -1,36 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FlexDiv } from '../../utils/common';
 import { Logo } from '../Logo/Logo';
+import { updateNestedField } from '../../utils/helpers';
+import { InvoiceContentProps } from '../../types/invoice';
 
-const InvoiceHeader = () => {
+const InvoiceHeader: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<Wrapper>
 			<Logo />
 			<IssuerInfoWrapper>
 				<CompanyName>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						PERA PERIĆ PR MY COMPANY BEOGRAD
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'myCompany',
+								'name',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.myCompany.name}
 					</EditableParagraph>
 				</CompanyName>
 				<InfoWrapper>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Adresa: Vidovdanska 58, Beograd
-					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Matični broj: 67508219
-					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						PIB: 115358721
-					</EditableParagraph>
 					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'myCompany',
+								'address',
+								e.currentTarget.textContent || ''
+							)
+						}
 						contentEditable="true"
 						suppressContentEditableWarning={true}
-					></EditableParagraph>
+					>
+						{invoiceData.myCompany.address}
+					</EditableParagraph>
 					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'myCompany',
+								'registrationNumber',
+								e.currentTarget.textContent || ''
+							)
+						}
 						contentEditable="true"
 						suppressContentEditableWarning={true}
-					></EditableParagraph>
+					>
+						{invoiceData.myCompany.registrationNumber}
+					</EditableParagraph>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'myCompany',
+								'taxID',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.myCompany.taxID}
+					</EditableParagraph>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'myCompany',
+								'optionalField1',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.myCompany.optionalField1}
+					</EditableParagraph>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'myCompany',
+								'optionalField2',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.myCompany.optionalField2}
+					</EditableParagraph>
 				</InfoWrapper>
 			</IssuerInfoWrapper>
 		</Wrapper>

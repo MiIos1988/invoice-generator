@@ -41,7 +41,7 @@ module.exports = {
 			],
 		}),
 		new HtmlPlugin({
-			title: 'AliBill',
+			title: 'Faktura',
 			filename: 'invoice.html',
 			chunks: ['invoice'],
 		}),

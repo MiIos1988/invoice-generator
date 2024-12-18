@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { InvoiceContentProps } from '../../types/invoice';
 
-const InvoiceTable = () => {
+const InvoiceTable: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<Table>
 			<Thead>

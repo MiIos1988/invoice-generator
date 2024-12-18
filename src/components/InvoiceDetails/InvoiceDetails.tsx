@@ -1,51 +1,200 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FlexDiv } from '../../utils/common';
+import { updateNestedField } from '../../utils/helpers';
+import { InvoiceContentProps } from '../../types/invoice';
 
-const InvoiceDetails = () => {
+const InvoiceDetails: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<>
 			<InvoiceNumber>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					Račun usluga br. 1
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceNumber',
+							'invoiceNumberText',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceNumber.invoiceNumberText}
+				</EditableParagraph>
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceNumber',
+							'number',
+							e.currentTarget.textContent || ''
+						)
+					}
+					style={{ paddingLeft: '5px' }}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceNumber.number}
 				</EditableParagraph>
 			</InvoiceNumber>
 			<Wrapper>
 				<InfoWrapper>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						KUPAC:
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'customer',
+								'title',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.customer.title}
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Naziv: <Span>Your Company d.o.o.</Span>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'customer',
+								'name',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						Naziv: <Span>{invoiceData.customer.name}</Span>
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Adresa: <Span>Dvadesetdevetog novembra 5b, 11000 Beograd</Span>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'customer',
+								'address',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						Adresa: <Span>{invoiceData.customer.address}</Span>
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Matični broj: <Span>29964551</Span>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'customer',
+								'registrationNumber',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						Matični broj: <Span>{invoiceData.customer.registrationNumber}</Span>
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						PIB: <Span>111365888</Span>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'customer',
+								'taxID',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						PIB: <Span>{invoiceData.customer.taxID}</Span>
 					</EditableParagraph>
 				</InfoWrapper>
 				<DateWrapper>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Datum izdavanja: 30.11.2024.
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceDetails',
+								'issueDate',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.invoiceDetails.issueDate}
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Datum prometa usluga: 30.11.2024.
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceDetails',
+								'transactionDate',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.invoiceDetails.transactionDate}
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						<Span> Datum valute: 30.11.2024.</Span>
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceDetails',
+								'currencyDate',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						<Span> {invoiceData.invoiceDetails.currencyDate}</Span>
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Mesto izdavanja: Beograd
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceDetails',
+								'issuePlace',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.invoiceDetails.issueDate}
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Način plaćanja: virmanski
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceDetails',
+								'paymentMethod',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.invoiceDetails.paymentMethod}
 					</EditableParagraph>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						Model / Poziv na broj: 1/2024
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceDetails',
+								'model',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.invoiceDetails.model}
 					</EditableParagraph>
 				</DateWrapper>
 			</Wrapper>
@@ -59,12 +208,11 @@ const Wrapper = styled(FlexDiv)`
 	color: #4a4a4a;
 `;
 
-const InvoiceNumber = styled.div`
+const InvoiceNumber = styled(FlexDiv)`
 	font-size: 24px;
 	font-weight: 700;
 	color: #4a4a4a;
-	margin-top: 60px;
-	margin-bottom: 30px;
+	margin-top: 30px;
 `;
 
 const InfoWrapper = styled.div`

@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { InvoiceContentProps } from '../../types/invoice';
 
-const InvoiceTotal = () => {
+const InvoiceTotal: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<>
 			<Wrapper>
