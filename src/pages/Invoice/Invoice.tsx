@@ -32,6 +32,30 @@ const Invoice = () => {
 			paymentMethod: 'Način plaćanja: virmanski',
 			model: 'Model / Poziv na broj: 1/2024',
 		},
+		tableHeader: {
+			name: 'NAZIV',
+			unit: 'JEDINIČNA MERA',
+			quantity: 'KOLIČINA',
+			price: 'CENA',
+			total: 'UKUPNO',
+		},
+		invoiceTable: [
+			{
+				serviceName: 'Usluge tehničke podrške za period Novembar',
+				unit: 'kom.',
+				quantity: 1,
+				price: '162.600,00',
+				total: '162.600,00',
+			},
+		],
+		invoiceTotal: {
+			firstTotal: 'UKUPNO 162.600,00 rsd',
+			additionalCosts: '',
+			mainTotal: 'UKUPNO 162.600,00 rsd',
+			amountInWords: 'Slovima: stošezdesetidvehiljadeišeststotinadinara',
+			law1: '**izdavalac računa nije obveznik pdv-a po članu 33. Zakona o pdv',
+			law2: '**ovaj račun je uradjen na računaru i punovažan je bez pečata i potpisa',
+		},
 		invoiceFooter: {
 			nameBank: 'OTP Bank a.d. Beograd',
 			giroAccount: 'Tekući račun: 325-9500700212121-21',

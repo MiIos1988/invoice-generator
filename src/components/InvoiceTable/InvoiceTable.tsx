@@ -1,47 +1,146 @@
 import React from 'react';
 import styled from 'styled-components';
 import { InvoiceContentProps } from '../../types/invoice';
+import { updateNestedField } from '../../utils/helpers';
 
 const InvoiceTable: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<Table>
 			<Thead>
 				<Tr>
-					<FirstColumn contentEditable="true" suppressContentEditableWarning={true}>
-						NAZIV
+					<FirstColumn
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'tableHeader',
+								'name',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.tableHeader.name}
 					</FirstColumn>
-					<OtherColumn contentEditable="true" suppressContentEditableWarning={true}>
-						JEDINIČNA MERA
+					<OtherColumn
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'tableHeader',
+								'unit',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.tableHeader.unit}
 					</OtherColumn>
-					<OtherColumn contentEditable="true" suppressContentEditableWarning={true}>
-						KOLIČINA
+					<OtherColumn
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'tableHeader',
+								'quantity',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.tableHeader.quantity}
 					</OtherColumn>
-					<OtherColumn contentEditable="true" suppressContentEditableWarning={true}>
-						CENA
+					<OtherColumn
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'tableHeader',
+								'price',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.tableHeader.price}
 					</OtherColumn>
-					<OtherColumn contentEditable="true" suppressContentEditableWarning={true}>
-						UKUPNO
+					<OtherColumn
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'tableHeader',
+								'total',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.tableHeader.total}
 					</OtherColumn>
 				</Tr>
 			</Thead>
 			<Tbody>
-				<Tr>
-					<Td style={{ textAlign: 'left' }} contentEditable="true" suppressContentEditableWarning={true}>
-						Usluge tehničke podrške za period Novembar
-					</Td>
-					<Td contentEditable="true" suppressContentEditableWarning={true}>
-						kom.
-					</Td>
-					<Td contentEditable="true" suppressContentEditableWarning={true}>
-						1
-					</Td>
-					<Td contentEditable="true" suppressContentEditableWarning={true}>
-						162.600,00
-					</Td>
-					<Td contentEditable="true" suppressContentEditableWarning={true}>
-						162.600,00
-					</Td>
-				</Tr>
+				{invoiceData.invoiceTable.map((row, i) => (
+					<Tr key={i}>
+						<Td
+							onBlur={(e) => {
+								const updatedTable = [...invoiceData.invoiceTable];
+								updatedTable[i].serviceName = e.currentTarget.textContent || '';
+								setInvoiceData({ ...invoiceData, invoiceTable: updatedTable });
+							}}
+							style={{ textAlign: 'left' }}
+							contentEditable="true"
+							suppressContentEditableWarning={true}
+						>
+							{row.serviceName}
+						</Td>
+						<Td
+							onBlur={(e) => {
+								const updatedTable = [...invoiceData.invoiceTable];
+								updatedTable[i].unit = e.currentTarget.textContent || '';
+								setInvoiceData({ ...invoiceData, invoiceTable: updatedTable });
+							}}
+							contentEditable="true"
+							suppressContentEditableWarning={true}
+						>
+							{row.unit}
+						</Td>
+						<Td
+							onBlur={(e) => {
+								const updatedTable = [...invoiceData.invoiceTable];
+								updatedTable[i].quantity = Number(e.currentTarget.textContent) || 0;
+								setInvoiceData({ ...invoiceData, invoiceTable: updatedTable });
+							}}
+							contentEditable="true"
+							suppressContentEditableWarning={true}
+						>
+							{row.quantity}
+						</Td>
+						<Td
+							onBlur={(e) => {
+								const updatedTable = [...invoiceData.invoiceTable];
+								updatedTable[i].price = e.currentTarget.textContent || '';
+								setInvoiceData({ ...invoiceData, invoiceTable: updatedTable });
+							}}
+							contentEditable="true"
+							suppressContentEditableWarning={true}
+						>
+							{row.price}
+						</Td>
+						<Td
+							onBlur={(e) => {
+								const updatedTable = [...invoiceData.invoiceTable];
+								updatedTable[i].total = e.currentTarget.textContent || '';
+								setInvoiceData({ ...invoiceData, invoiceTable: updatedTable });
+							}}
+							contentEditable="true"
+							suppressContentEditableWarning={true}
+						>
+							{row.total}
+						</Td>
+					</Tr>
+				))}
 			</Tbody>
 		</Table>
 	);

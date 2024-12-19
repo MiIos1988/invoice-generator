@@ -26,6 +26,22 @@ export type InvoiceData = {
 		paymentMethod: string;
 		model: string;
 	};
+	tableHeader: {
+		name: string;
+		unit: string;
+		quantity: string;
+		price: string;
+		total: string;
+	};
+	invoiceTable: InvoiceTableRow[];
+	invoiceTotal: {
+		firstTotal: string;
+		additionalCosts: string;
+		mainTotal: string;
+		amountInWords: string;
+		law1: string;
+		law2: string;
+	};
 	invoiceFooter: {
 		nameBank: string;
 		giroAccount: string;
@@ -37,4 +53,12 @@ export type InvoiceData = {
 export type InvoiceContentProps = {
 	invoiceData: InvoiceData;
 	setInvoiceData: React.Dispatch<React.SetStateAction<InvoiceData>>;
+};
+
+type InvoiceTableRow = {
+	serviceName: string;
+	unit: string;
+	quantity: number;
+	price: string;
+	total: string;
 };

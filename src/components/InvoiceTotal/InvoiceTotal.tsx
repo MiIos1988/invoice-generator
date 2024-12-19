@@ -1,31 +1,101 @@
 import React from 'react';
 import styled from 'styled-components';
 import { InvoiceContentProps } from '../../types/invoice';
+import { updateNestedField } from '../../utils/helpers';
 
 const InvoiceTotal: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoiceData }) => {
 	return (
 		<>
 			<Wrapper>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					UKUPNO 162.600,00 rsd
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceTotal',
+							'firstTotal',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceTotal.firstTotal}
+				</EditableParagraph>
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceTotal',
+							'additionalCosts',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceTotal.additionalCosts}
 				</EditableParagraph>
 				<SumWrapper>
-					<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-						UKUPNO 162.600,00 rsd
+					<EditableParagraph
+						onBlur={(e) =>
+							updateNestedField(
+								setInvoiceData,
+								'invoiceTotal',
+								'mainTotal',
+								e.currentTarget.textContent || ''
+							)
+						}
+						contentEditable="true"
+						suppressContentEditableWarning={true}
+					>
+						{invoiceData.invoiceTotal.mainTotal}
 					</EditableParagraph>
 				</SumWrapper>
 			</Wrapper>
 			<LettersWrapper>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					Slovima: stošezdesetidvehiljadeišeststotinadinara
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceTotal',
+							'amountInWords',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceTotal.amountInWords}
 				</EditableParagraph>
 			</LettersWrapper>
 			<ArticleLawWrapper>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					**izdavalac računa nije obveznik pdv-a po članu 33. Zakona o pdv
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceTotal',
+							'law1',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceTotal.law1}
 				</EditableParagraph>
-				<EditableParagraph contentEditable="true" suppressContentEditableWarning={true}>
-					**ovaj račun je uradjen na računaru i punovažan je bez pečata i potpisa
+				<EditableParagraph
+					onBlur={(e) =>
+						updateNestedField(
+							setInvoiceData,
+							'invoiceTotal',
+							'law2',
+							e.currentTarget.textContent || ''
+						)
+					}
+					contentEditable="true"
+					suppressContentEditableWarning={true}
+				>
+					{invoiceData.invoiceTotal.law2}
 				</EditableParagraph>
 			</ArticleLawWrapper>
 		</>
@@ -47,7 +117,7 @@ const Wrapper = styled.div`
 const SumWrapper = styled.div`
 	color: black;
 	font-weight: 700;
-	margin-top: 40px;
+	margin-top: 10px;
 	margin-bottom: 20px;
 `;
 
