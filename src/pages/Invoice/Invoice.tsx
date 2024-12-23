@@ -65,19 +65,28 @@ const Invoice = () => {
 	});
 
 	useEffect(() => {
-		chrome.storage.local.get(['invoiceData'], (result) => {
-			if (result.invoiceData) {
-				setInvoiceData((prevState) => {
-					console.log('Previous state:', prevState);
-					console.log('New state:', result.invoiceData);
-					return result.invoiceData;
-				});
-			}
+		chrome.storage.local.get(['invoiceData', 'lastInvoiceNumber'], (result) => {
+			const newInvoiceData = result.invoiceData || invoiceData;
+			const lastInvoiceNumber = result.lastInvoiceNumber || 0;
+
+			newInvoiceData.invoiceNumber.number = lastInvoiceNumber + 1;
+
+			setInvoiceData(newInvoiceData);
 		});
 	}, []);
 
+	useEffect(() => {
+		setInvoiceData((prev) => ({
+			...prev,
+			invoiceDetails: {
+				...prev.invoiceDetails,
+				model: `Model / Poziv na broj: ${prev.invoiceNumber.number}/2024`,
+			},
+		}));
+	}, [invoiceData.invoiceNumber.number]);
+
 	const handleClick = () => {
-		chrome.storage.local.set({ invoiceData });
+		chrome.storage.local.set({ invoiceData, lastInvoiceNumber: invoiceData.invoiceNumber.number });
 		window.print();
 	};
 

@@ -11,7 +11,7 @@ export const updateNestedField = <T extends object, K extends keyof T>(
 	setState: React.Dispatch<React.SetStateAction<T>>,
 	parentField: K,
 	childField: keyof T[K],
-	value: string
+	value: string | number
 ) => {
 	setState((prev) => ({
 		...prev,

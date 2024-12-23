@@ -28,7 +28,7 @@ const InvoiceDetails: React.FC<InvoiceContentProps> = ({ invoiceData, setInvoice
 							setInvoiceData,
 							'invoiceNumber',
 							'number',
-							e.currentTarget.textContent || ''
+							Number(e.currentTarget.textContent)
 						)
 					}
 					style={{ paddingLeft: '5px' }}
